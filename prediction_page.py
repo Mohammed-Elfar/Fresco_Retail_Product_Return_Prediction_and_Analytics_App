@@ -22,7 +22,7 @@ st.info(
 )
 
 # ========== MODEL LOADING ==========
-MODEL_PATH = "model/Final_Model.joblib"
+MODEL_PATH = "model/model.joblib"
 
 @st.cache_resource
 def load_model(path):
