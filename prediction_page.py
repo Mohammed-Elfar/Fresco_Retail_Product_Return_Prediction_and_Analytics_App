@@ -22,7 +22,7 @@ st.info(
 )
 
 # ========== MODEL LOADING ==========
-MODEL_PATH = '/Users/mohammedmahmood/Desktop/Data projects/Data science/Fresco Retailer Product Return Prediction/model/Final_Model.joblib'
+MODEL_PATH = "model/Final_Model.joblib"
 
 @st.cache_resource
 def load_model(path):
