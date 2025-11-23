@@ -13,7 +13,7 @@ st.title("📊 Analytics & Insights")
 
 # ================== CONFIG ==================
 # Change this path to where your Excel file lives on your machine
-DATA_PATH = r'/Users/mohammedmahmood/Desktop/Data projects/Data science/Fresco Retailer Product Return Prediction/data/Fresco_Retailerr.xlsx'
+DATA_PATH = r'data/Fresco_Retailerr.xlsx'
 
 # ================== HELPERS ==================
 @st.cache_data
