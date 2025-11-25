@@ -12,7 +12,7 @@ st.write("---")
 # ================== DATA UPLOAD ==================
 st.header("Upload Dataset (Optional)")
 
-default_path = r"/Users/mohammedmahmood/Desktop/Data projects/Data science/Fresco Retailer Product Return Prediction/data/Fresco_Retailerr.xlsx"
+default_path = r"data/Fresco_Retailerr.xlsx"
 uploaded_file = st.file_uploader("Upload a CSV or Excel file", type=['csv', 'xlsx'])
 
 @st.cache_data
