@@ -541,7 +541,6 @@ with st.expander("Final Summary & Recommendations", expanded=False):
     <p><b>Returns are driven by product quality, fit, customer satisfaction, and tax/income sensitivity.</b> Reducing returns requires proactive QC, better sizing guides, improved support, and targeted promotions for high-risk segments.</p>
 
     <div style='margin-top:8px; font-size:13px; color:#666;'>
-      Tip: لو عايز كل النص يكون بلون الأزرق بدلاً من العناوين فقط، أو تحب تغيّر الدرجة، قلّي أعدّله فوراً.
     </div>
 
     </div>
