@@ -503,49 +503,129 @@ with st.expander(" ", expanded=False):  # final polished summary & recommendatio
     """, unsafe_allow_html=True)
 
     st.markdown("""
-    <div style='font-size:17px; line-height:1.8; text-align:justify; color:white;'>
+<style>
+/* Container card */
+.insights-card {
+  border-radius: 12px;
+  padding: 18px;
+  margin: 8px 0;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+}
 
-    ###  <span style='color:#90CAF9;'>Overall Insights Summary</span>
+/* Accent bar and circle (colorful identifier that remains visible) */
+.insights-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.accent {
+  width: 8px;
+  border-radius: 6px;
+  margin-top: 6px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #1565C0, #81C784); /* blue -> green gradient */
+}
+.accent-circle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-top: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  background: linear-gradient(180deg,#90CAF9,#FFCDD2); /* light-blue -> pink */
+}
 
-    • **Income & Product Category:**  
-      Very High income customers show the highest return rates, especially for Bags and Home & Kitchen.  
-      Medium and Very High income groups contribute noticeably to Bags return rates.  
+/* Content */
+.insights-content h2 {
+  margin: 0 0 6px 0;
+  font-size: 22px;
+  letter-spacing: 0.6px;
+}
+.insights-content h3 {
+  margin: 10px 0 6px 0;
+  font-size: 18px;
+}
+.insights-content p, .insights-content li {
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 6px 0;
+}
 
-    • **Reviews:**  
-      Low satisfaction customers drive high return rates—up to 59% for Women’s Bags, 55% for Clothing, 52% for Footwear.  
-      High satisfaction customers have minimal returns (~3%), showing the importance of quality and fit.
+/* Divider */
+.insights-divider {
+  height: 1px;
+  margin: 12px 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.08), rgba(0,0,0,0.02));
+  opacity: 0.8;
+}
 
-    • **Tax Levels:**  
-      Mobiles under High tax show 24% return rate. Women’s products and Furnishing/Kitchen also show elevated returns under high tax levels.
+/* Ensure good contrast in light mode */
+:root {
+  --main-text: #111111;    /* dark text for light theme */
+  --muted-text: #333333;
+  --card-bg: rgba(255,255,255,0.02);
+}
 
-    <br>
-    <hr style='margin:10px 0;'>
+/* Dark mode adjustments (many browsers support) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-text: #f5f5f5;
+    --muted-text: #d7d7d7;
+    --card-bg: rgba(0,0,0,0.24);
+  }
+  .insights-card { box-shadow: 0 6px 18px rgba(0,0,0,0.6); }
+  .insights-divider { background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); }
+}
 
-    ###  <span style='color:#81C784;'>Strategic Recommendations / Action Plan</span>
+/* Apply colors */
+.insights-card { background-color: var(--card-bg); color: var(--main-text); }
+.insights-content { color: var(--main-text); }
+.insights-content .muted { color: var(--muted-text); font-size:14px; }
+</style>
 
-    1. **Focus on Women’s Bags:** Fix the 59% return rate for low satisfaction by improving quality and fit. Add clear size guides and let customers try before buying.
-
-    2. **Improve Women’s Clothing and Footwear:** Cut the 55% and 52% returns for low satisfaction with better designs and easy return options. Offer fit advice in stores.
-
-    3. **Boost Women’s Home and Kitchen:** Lower the 50% return rate for low satisfaction by checking product quality and giving simple use instructions.
-
-    4. **Help with Mobiles:** Reduce the 24% return rate for low satisfaction in Electronics by offering strong warranties and quick tech support.
-
-    5. **Target High Tax and Income Issues:** For items like Mobiles (24% at high tax) and Bags (20% for Very High income), test lower taxes or discounts to keep customers happy.
-
-    6. **Use Happy Customers:** Learn from the 3% return rate with high satisfaction—share good designs and service tips across all products.
-
-    7. **Start a Big Test:** Run a pilot program with fit checks, surveys, and better support for low-satisfaction customers, especially for Women’s products and high-tax items, to find and fix problems fast.
-
-    8. **Collect Data on Returned Products:** Gather info from all returned items in every category using surveys, logs, or feedback forms. Common causes include sizing/fit issues, damaged/defective products, unmet expectations, and shipping damage. Use this data to fix problems, such as better size guides for clothing/bags, stronger packaging for electronics/home items, and clear descriptions for books.
-
-    <br>
-    <hr style='margin:10px 0;'>
-
-    ###  <span style='color:#FFCDD2;'>Key Takeaway</span>
-    <b>Returns are driven by product quality, fit, customer satisfaction, and high tax or income-sensitive items.</b>  
-    Reducing returns requires <b>proactive quality control, better sizing guides, improved support, and targeted promotions</b> for high-risk segments.
+<div class="insights-card">
+  <div class="insights-row">
+    <div>
+      <div class="accent" title="Accent bar"></div>
+      <div style="height:8px"></div>
+      <div class="accent-circle" title="Color marker"></div>
     </div>
-    """, unsafe_allow_html=True)
 
-    st.success("✅ This summary unifies insights and actionable recommendations from all analyses for strategic decision-making.")
+    <div class="insights-content">
+      <h2>Final Summary & Recommendations</h2>
+      <div class="insights-divider"></div>
+
+      <h3 style="color:#90CAF9;">Overall Insights Summary</h3>
+      <ul>
+        <li><b>Income & Product Category:</b> Very high income customers show the highest return rates, especially <span class="muted">Bags</span> and <span class="muted">Home & Kitchen</span>.</li>
+        <li><b>Reviews:</b> Low-satisfaction customers drive high return rates — up to <b>59%</b> for Women’s Bags, <b>55%</b> for Clothing, <b>52%</b> for Footwear.</li>
+        <li><b>Tax Levels:</b> Mobiles under <i>High tax</i> show ~<b>24%</b> return rate; Women’s products and Furnishing/Kitchen are also impacted.</li>
+      </ul>
+
+      <div class="insights-divider"></div>
+
+      <h3 style="color:#81C784;">Strategic Recommendations / Action Plan</h3>
+      <ol>
+        <li><b>Focus on Women’s Bags:</b> Improve quality & fit; add clear size guides and try-before-buy where possible.</li>
+        <li><b>Improve Women’s Clothing & Footwear:</b> Offer fit advice, easier return flows, and in-store fitting support.</li>
+        <li><b>Boost Home & Kitchen Quality:</b> Strengthen QC and provide clear usage instructions to reduce misunderstandings.</li>
+        <li><b>Help with Mobiles:</b> Provide warranties & fast tech support to cut technical-return cases.</li>
+        <li><b>Target High Tax & Income-sensitive Items:</b> Run targeted discounts/tests for high-tax items and VIP income brackets.</li>
+        <li><b>Scale What Works:</b> Copy successful practices from high-satisfaction cohorts (3% return) across categories.</li>
+        <li><b>Run a Pilot:</b> Test fit-checks, expedited support, and targeted promos on high-risk segments.</li>
+        <li><b>Collect Return Data:</b> Log reasons for every return and act on the top 3 causes (size/fit, defect, shipping).</li>
+      </ol>
+
+      <div class="insights-divider"></div>
+
+      <h3 style="color:#FF8A80;">Key Takeaway</h3>
+      <p><b>Returns are driven by product quality, fit, customer satisfaction, and tax/income sensitivity.</b> Reduce returns via proactive QC, better sizing guides, improved support, and targeted promotions.</p>
+
+      <div style="margin-top:10px;">
+        <span class="muted">Tip: accent bars & markers keep the colored identity even if the page is black & white; main text uses high-contrast colors for readability in both light/dark modes.</span>
+      </div>
+    </div>
+  </div>
+</div>
+""", unsafe_allow_html=True)
+st.success("✅ This summary unifies insights and actionable recommendations with color accents that work in both light and dark themes.")
