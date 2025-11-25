@@ -7,3 +7,4 @@ joblib
 imbalanced-learn
 category-encoders
 xgboost
+openpyxl
