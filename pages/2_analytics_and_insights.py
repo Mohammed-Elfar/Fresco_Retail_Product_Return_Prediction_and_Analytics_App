@@ -502,130 +502,133 @@ with st.expander(" ", expanded=False):  # final polished summary & recommendatio
         </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("""
+  st.markdown("""
 <style>
-/* Container card */
-.insights-card {
-  border-radius: 12px;
-  padding: 18px;
-  margin: 8px 0;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+/* ---- variables (غيّر لون الـ accent هنا مرة واحدة إذا حبيت) ---- */
+:root{
+  --accent: #ff7043;         /* accent افتراضي (برتقالي دافئ) */
+  --card-radius: 12px;
+  --gap: 14px;
 }
 
-/* Accent bar and circle (colorful identifier that remains visible) */
-.insights-row {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
-.accent {
-  width: 8px;
-  border-radius: 6px;
-  margin-top: 6px;
-  flex-shrink: 0;
-  background: linear-gradient(180deg, #1565C0, #81C784); /* blue -> green gradient */
-}
-.accent-circle {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  margin-top: 4px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  background: linear-gradient(180deg,#90CAF9,#FFCDD2); /* light-blue -> pink */
-}
-
-/* Content */
-.insights-content h2 {
-  margin: 0 0 6px 0;
-  font-size: 22px;
-  letter-spacing: 0.6px;
-}
-.insights-content h3 {
-  margin: 10px 0 6px 0;
-  font-size: 18px;
-}
-.insights-content p, .insights-content li {
-  font-size: 15px;
-  line-height: 1.7;
-  margin: 6px 0;
-}
-
-/* Divider */
-.insights-divider {
-  height: 1px;
-  margin: 12px 0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.08), rgba(0,0,0,0.02));
-  opacity: 0.8;
-}
-
-/* Ensure good contrast in light mode */
+/* Dark / Light adjustments for text & card */
 :root {
-  --main-text: #111111;    /* dark text for light theme */
-  --muted-text: #333333;
-  --card-bg: rgba(255,255,255,0.02);
+  --text-light: #111;   /* نص للوضع الفاتح */
+  --muted-light: #333;
+  --card-bg-light: rgba(255,255,255,0.02);
 }
 
-/* Dark mode adjustments (many browsers support) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --main-text: #f5f5f5;
-    --muted-text: #d7d7d7;
-    --card-bg: rgba(0,0,0,0.24);
+    --text-dark: #f5f5f5;
+    --muted-dark: #d1d1d1;
+    --card-bg-dark: rgba(0,0,0,0.26);
   }
-  .insights-card { box-shadow: 0 6px 18px rgba(0,0,0,0.6); }
-  .insights-divider { background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); }
 }
 
-/* Apply colors */
-.insights-card { background-color: var(--card-bg); color: var(--main-text); }
-.insights-content { color: var(--main-text); }
-.insights-content .muted { color: var(--muted-text); font-size:14px; }
+/* Card */
+.insights-card {
+  border-radius: var(--card-radius);
+  padding: 18px;
+  margin: 10px 0;
+  background-color: var(--card-bg-light);
+  color: var(--text-light);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* Ensure dark mode values override */
+@media (prefers-color-scheme: dark) {
+  .insights-card {
+    background-color: var(--card-bg-dark);
+    color: var(--text-dark);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  }
+}
+
+/* Row layout */
+.insights-row { display:flex; gap: var(--gap); align-items:flex-start; }
+
+/* Accent bar + marker - always visible due to stroke and glow */
+.accent {
+  width: 10px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, var(--accent), #ffd29b);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  flex-shrink:0;
+  min-height: 90px;
+  border: 2px solid rgba(255,255,255,0.12);
+}
+
+/* Accent circle (marker) - contrasting outline ensures visibility */
+.accent-circle {
+  width:16px; height:16px; border-radius:50%;
+  background: var(--accent);
+  border: 2px solid rgba(255,255,255,0.85); /* white-ish outline helps on dark */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  margin-top:8px;
+}
+
+/* Text blocks */
+.insights-content h2 { margin:0 0 6px 0; font-size:22px; letter-spacing:0.4px; }
+.insights-content h3 { margin:10px 0 6px 0; font-size:17px; }
+.insights-content p, .insights-content li { font-size:15px; line-height:1.7; margin:6px 0; }
+
+/* Divider */
+.insights-divider { height:1px; margin:12px 0; background: linear-gradient(90deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02)); opacity:0.95; }
+@media (prefers-color-scheme: dark) { .insights-divider { background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); } }
+
+/* Muted text color per theme */
+.muted { color: var(--muted-light); }
+@media (prefers-color-scheme: dark) { .muted { color: var(--muted-dark); } }
+
+/* Small responsive tweak */
+@media (max-width:700px) {
+  .insights-row { flex-direction: row; gap:10px; }
+  .accent { min-height:70px; }
+}
 </style>
 
 <div class="insights-card">
   <div class="insights-row">
-    <div>
-      <div class="accent" title="Accent bar"></div>
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      <div class="accent" title="accent bar"></div>
       <div style="height:8px"></div>
-      <div class="accent-circle" title="Color marker"></div>
+      <div class="accent-circle" title="marker"></div>
     </div>
 
     <div class="insights-content">
       <h2>Final Summary & Recommendations</h2>
       <div class="insights-divider"></div>
 
-      <h3 style="color:#90CAF9;">Overall Insights Summary</h3>
+      <h3 style="color:var(--accent);">Overall Insights Summary</h3>
       <ul>
-        <li><b>Income & Product Category:</b> Very high income customers show the highest return rates, especially <span class="muted">Bags</span> and <span class="muted">Home & Kitchen</span>.</li>
+        <li><b>Income & Product Category:</b> Very high income customers show higher return rates, notably <span class="muted">Bags</span> and <span class="muted">Home & Kitchen</span>.</li>
         <li><b>Reviews:</b> Low-satisfaction customers drive high return rates — up to <b>59%</b> for Women’s Bags, <b>55%</b> for Clothing, <b>52%</b> for Footwear.</li>
-        <li><b>Tax Levels:</b> Mobiles under <i>High tax</i> show ~<b>24%</b> return rate; Women’s products and Furnishing/Kitchen are also impacted.</li>
+        <li><b>Tax Levels:</b> Mobiles under high tax show ~<b>24%</b> return rate; Women’s products and Furnishing/Kitchen also impacted.</li>
       </ul>
 
       <div class="insights-divider"></div>
 
-      <h3 style="color:#81C784;">Strategic Recommendations / Action Plan</h3>
+      <h3 style="color:var(--accent);">Strategic Recommendations / Action Plan</h3>
       <ol>
-        <li><b>Focus on Women’s Bags:</b> Improve quality & fit; add clear size guides and try-before-buy where possible.</li>
-        <li><b>Improve Women’s Clothing & Footwear:</b> Offer fit advice, easier return flows, and in-store fitting support.</li>
-        <li><b>Boost Home & Kitchen Quality:</b> Strengthen QC and provide clear usage instructions to reduce misunderstandings.</li>
-        <li><b>Help with Mobiles:</b> Provide warranties & fast tech support to cut technical-return cases.</li>
-        <li><b>Target High Tax & Income-sensitive Items:</b> Run targeted discounts/tests for high-tax items and VIP income brackets.</li>
-        <li><b>Scale What Works:</b> Copy successful practices from high-satisfaction cohorts (3% return) across categories.</li>
-        <li><b>Run a Pilot:</b> Test fit-checks, expedited support, and targeted promos on high-risk segments.</li>
-        <li><b>Collect Return Data:</b> Log reasons for every return and act on the top 3 causes (size/fit, defect, shipping).</li>
+        <li><b>Focus on Women’s Bags:</b> Improve quality & fit; add size guides and try-before-buy options.</li>
+        <li><b>Improve Women’s Clothing & Footwear:</b> Offer fit advice, easier returns, and in-store fitting support.</li>
+        <li><b>Boost Home & Kitchen Quality:</b> Stronger QC and clear instructions to reduce misunderstandings.</li>
+        <li><b>Help with Mobiles:</b> Warranties & fast tech support to reduce technical returns.</li>
+        <li><b>Target High Tax / Income-sensitive Items:</b> Test discounts or promotions for high-risk segments.</li>
+        <li><b>Scale What Works:</b> Apply practices from high-satisfaction cohorts (3% return) across categories.</li>
+        <li><b>Run a Pilot:</b> Test fit-checks, surveys, and targeted promotions on high-risk products.</li>
+        <li><b>Collect Return Data:</b> Log reasons and act on top causes (size/fit, defect, shipping).</li>
       </ol>
 
       <div class="insights-divider"></div>
 
-      <h3 style="color:#FF8A80;">Key Takeaway</h3>
-      <p><b>Returns are driven by product quality, fit, customer satisfaction, and tax/income sensitivity.</b> Reduce returns via proactive QC, better sizing guides, improved support, and targeted promotions.</p>
+      <h3 style="color:var(--accent);">Key Takeaway</h3>
+      <p><b>Returns are driven by product quality, fit, customer satisfaction, and tax/income sensitivity.</b> Reduce returns with proactive QC, clear sizing, better support, and targeted promotions.</p>
 
-      <div style="margin-top:10px;">
-        <span class="muted">Tip: accent bars & markers keep the colored identity even if the page is black & white; main text uses high-contrast colors for readability in both light/dark modes.</span>
-      </div>
+      <div style="margin-top:8px;"><span class="muted">Tip: إذا عايز لون مختلف بدل البرتقالي، غيّر قيمة <code>--accent</code> أعلى الكود (مثلاً #1565C0 للأزرق أو #81C784 للأخضر).</span></div>
     </div>
   </div>
 </div>
 """, unsafe_allow_html=True)
-st.success("✅ This summary unifies insights and actionable recommendations with color accents that work in both light and dark themes.")
+
