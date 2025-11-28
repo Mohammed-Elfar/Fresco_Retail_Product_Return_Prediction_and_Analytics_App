@@ -1,3 +1,7 @@
+## Note
+**For Interactive notebook & full analysis (plots + code) are hosted on Kaggle.**  :
+https://www.kaggle.com/code/mohammadelfar/fresco-product-return-prediction-97acc-87recall
+
 # Fresco Retail Product Return Prediction and Analytics App
 
 ### Project Overview
