@@ -18,7 +18,7 @@ st.divider()
 # ========== DATA UPLOAD ==========
 st.subheader("Dataset")
 
-default_path = "/Users/mohammedmahmood/Desktop/Data projects/Projects/Data science/Supervised /Fresco Retailer Product Return Prediction/data/Fresco_Retailerr.xlsx"
+default_path = "data/Fresco_Retailerr.xlsx"
 
 
 uploaded_file = st.file_uploader(
