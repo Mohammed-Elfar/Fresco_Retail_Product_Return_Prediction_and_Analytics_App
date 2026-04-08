@@ -22,7 +22,7 @@ st.info(
 st.divider()
 
 # ========== MODEL LOADING ==========
-MODEL_PATH = '/Users/mohammedmahmood/Desktop/Data projects/Projects/Data science/Supervised /Fresco Retailer Product Return Prediction/model/XGBoost_Final_Model.joblib'
+MODEL_PATH = "model/XGBoost_Final_Model.joblib"
 
 
 
